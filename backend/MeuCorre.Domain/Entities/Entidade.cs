@@ -1,4 +1,4 @@
-﻿namespace MeuCorre.Core.Entities
+﻿namespace MeuCorre.Domain.Entities
 {
     public abstract class Entidade
     {

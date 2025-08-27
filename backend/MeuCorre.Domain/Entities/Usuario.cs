@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MeuCorre.Core.Entities
+﻿namespace MeuCorre.Domain.Entities
 {
     public class Usuario : Entidade
     {

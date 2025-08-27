@@ -1,7 +1,7 @@
 ﻿using MeuCorre.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace MeuCorre.Infra.Context
+namespace MeuCorre.Infra.Data.Context
 {
     public class MeuDbContext : DbContext
     {

@@ -9,3 +9,6 @@ O Backend será desenvolvido em .net8 modelo de Web API Rest.
 
 ### Frontend
 Para o frontend vamos usar técnologias como Html, Css, Js e Typescript com Angular.
+
+---
+Conhece mais detalhes do projeto lendo noss wiki: https://github.com/weltoncastoldi/senac-dev-web/wiki#1-vis%C3%A3o-geral-do-projeto

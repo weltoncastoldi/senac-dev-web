@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MediatR;
+using MeuCorre.Domain.Interfaces.Repositories;
 
 namespace MeuCorre.Application.UseCases.Usuarios.Commands
 {
@@ -16,6 +17,7 @@ namespace MeuCorre.Application.UseCases.Usuarios.Commands
         public required string Email { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatória")]
+        [MinLength(6, ErrorMessage = "Senha deve ter no mínimo 6 caracteres")]
         public required string Senha { get; set; }
 
         [Required(ErrorMessage = "Data de Nascimento é obrigatória")]
@@ -24,9 +26,21 @@ namespace MeuCorre.Application.UseCases.Usuarios.Commands
 
     internal class CriarUsuarioCommandHandler : IRequestHandler<CriarUsuarioCommand, string>
     {
-        public Task<string> Handle(CriarUsuarioCommand request, CancellationToken cancellationToken)
+        private readonly IUsuarioRepository _usuarioRepository;
+
+        public CriarUsuarioCommandHandler(IUsuarioRepository usuarioRepository)
         {
-            
+            _usuarioRepository = usuarioRepository;
+        }
+
+        public async Task<string> Handle(CriarUsuarioCommand request, CancellationToken cancellationToken)
+        {
+            //vai no banco e verifica se já existe um usuário com o email informado
+            var usuarioExistente = await _usuarioRepository.ObterUsuarioPorEmail(request.Email);
+            if (usuarioExistente != null)
+            {
+                return "Já existe um usuário cadastrado com este email.";
+            }
         }
     }
 }

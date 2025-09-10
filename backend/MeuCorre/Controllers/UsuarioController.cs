@@ -14,7 +14,7 @@ namespace MeuCorre.Controllers
         [HttpPost]
         public async Task<IActionResult> CriarUsuario([FromBody] CriarUsuarioCommand command)
         {
-
+            
         }
 
     }

@@ -1,28 +1,39 @@
 ﻿using MeuCorre.Domain.Entities;
 using MeuCorre.Domain.Interfaces.Repositories;
+using MeuCorre.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace MeuCorre.Infra.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public Task CriarUsuarioAsync(Usuario usuario)
+        private readonly MeuDbContext _meuDbContext;
+        public UsuarioRepository(MeuDbContext meuDbContext)
         {
-            throw new NotImplementedException();
+            _meuDbContext = meuDbContext;
         }
 
-        public Task AtualizarUsuarioAsync(Usuario usuario)
+        public async Task CriarUsuarioAsync(Usuario usuario)
         {
-            throw new NotImplementedException();
+            await _meuDbContext.Usuarios.AddAsync(usuario);
+            await _meuDbContext.SaveChangesAsync();
         }
 
-        public Task RemoverUsuarioAsync(Usuario usuario)
+        public async Task AtualizarUsuarioAsync(Usuario usuario)
         {
-            throw new NotImplementedException();
+            _meuDbContext.Usuarios.Update(usuario);
+            await _meuDbContext.SaveChangesAsync();
         }
 
-        public Task<Usuario?> ObterUsuarioPorEmail(string email)
+        public async Task RemoverUsuarioAsync(Usuario usuario)
         {
-            throw new NotImplementedException();
+            _meuDbContext.Usuarios.Remove(usuario);
+            await _meuDbContext.SaveChangesAsync();
+        }
+
+        public async Task<Usuario?> ObterUsuarioPorEmail(string email)
+        {
+            return await _meuDbContext.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
         }
     }
 }

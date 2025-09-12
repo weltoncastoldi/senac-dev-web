@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace MeuCorre.Domain.Entities
 {
@@ -20,15 +19,24 @@ namespace MeuCorre.Domain.Entities
         //Construtor é a primeira coisa que é executada quando uma classe é instanciada.
         public Usuario(string nome, string email, string senha, DateTime dataNascimento, bool ativo)
         {
+            ValidarEntidadeUsuario(email, senha, dataNascimento);
+            
             Nome = nome;
             Email = email;
-            Senha = ValidarSenha(senha);
-            DataNascimento = ValidarIdadeMinina(dataNascimento);
+            Senha = senha;
+            DataNascimento = dataNascimento;
             Ativo = ativo;
         }
 
+
+        private void ValidarEntidadeUsuario(string email, string senha, DateTime nascimento)
+        {
+            ValidarIdadeMinina(nascimento);
+            ValidarSenha(senha);
+            ValidarEmail(email);
+        }
         //Regra negocio: Permite apenas usários maiores de 13 anos.
-        private DateTime ValidarIdadeMinina(DateTime nascimento)
+        private void ValidarIdadeMinina(DateTime nascimento)
         {
             var hoje = DateTime.Today;
             var idade = hoje.Year - nascimento.Year;
@@ -41,13 +49,11 @@ namespace MeuCorre.Domain.Entities
                 //Interrompe o processo devolvendo o erro
                 throw new Exception("Usuário deve ter no minimo 13 anos");
             }
-
-            return nascimento;
         }
 
-        public string ValidarSenha(string senha)
+        public void ValidarSenha(string senha)
         {
-            //Regra de negocio: pelo menos uma letra e um número.
+            //Regra de dnegocio: pelo menos uma letra e um número.
             if (!Regex.IsMatch(senha, "[a-z]"))
             {
                 throw new Exception("A senha deve contar pelo menos uma letra minuscula");
@@ -60,10 +66,16 @@ namespace MeuCorre.Domain.Entities
             {
                 throw new Exception("A senha deve contar pelo menos um números");
             }
-
-            return senha;
         }
 
+        private void ValidarEmail(string email)
+        {
+            //Regra de negocio: email deve conter @ e um domínio válido.
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                throw new Exception("Email em formato inválido");
+            }
+        }
         public void AtivarUsuario()
         {
             Ativo = true;

@@ -27,7 +27,7 @@ namespace MeuCorre.Controllers
             }
             else
             {
-                return BadRequest(mensagem);
+                return Conflict(mensagem);
             }
         }
 

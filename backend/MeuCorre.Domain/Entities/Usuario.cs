@@ -35,7 +35,7 @@ namespace MeuCorre.Domain.Entities
             ValidarSenha(senha);
             ValidarEmail(email);
         }
-        //Regra negocio: Permite apenas usários maiores de 13 anos.
+
         private void ValidarIdadeMinina(DateTime nascimento)
         {
             var hoje = DateTime.Today;
@@ -50,7 +50,6 @@ namespace MeuCorre.Domain.Entities
                 throw new Exception("Usuário deve ter no minimo 13 anos");
             }
         }
-
         public void ValidarSenha(string senha)
         {
             //Regra de dnegocio: pelo menos uma letra e um número.
@@ -67,7 +66,6 @@ namespace MeuCorre.Domain.Entities
                 throw new Exception("A senha deve contar pelo menos um números");
             }
         }
-
         private void ValidarEmail(string email)
         {
             //Regra de negocio: email deve conter @ e um domínio válido.

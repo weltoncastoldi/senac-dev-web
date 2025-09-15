@@ -31,5 +31,11 @@ namespace MeuCorre.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarUsuario(Guid id, [FromBody] AtualizarUsuarioCommand command)
+        {
+            command.Id = id; // Garante que o ID do comando seja o mesmo da rota    
+        }
+
     }
 }

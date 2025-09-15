@@ -12,9 +12,6 @@ namespace MeuCorre.Application.UseCases.Usuarios.Commands
         [Required(ErrorMessage = "Nome é obrigatório")]
         public required string Nome { get; set; }
 
-        [Required(ErrorMessage = "Email é obrigatório")]
-        public required string Email { get; set; }
-        
         [Required(ErrorMessage = "Data de Nascimento é obrigatória")]
         public DateTime DataNascimento { get; set; }
     }
@@ -35,6 +32,11 @@ namespace MeuCorre.Application.UseCases.Usuarios.Commands
                 return ("Usuário não encontrado.", false);
             }
 
+            usuario.AtualizarInformacoes(request.Nome, request.DataNascimento);
+
+            await _usuarioRepository.AtualizarUsuarioAsync(usuario);
+
+            return ("Usuário atualizado com sucesso", true);
         }
     }
 }

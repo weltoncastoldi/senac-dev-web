@@ -1,4 +1,5 @@
-﻿using MeuCorre.Domain.Enums;
+﻿using System.Text.RegularExpressions;
+using MeuCorre.Domain.Enums;
 
 namespace MeuCorre.Domain.Entities
 {
@@ -18,6 +19,8 @@ namespace MeuCorre.Domain.Entities
 
         public Categoria(Guid usuarioId, string nome, TipoTransacao tipoDaTransacao, string? descricao, string? cor, string? icone)
         {
+            ValidarEntidadeCategoria(cor);
+
             UsuarioId = usuarioId;
             Nome = nome.ToUpper();
             Descricao = descricao;
@@ -38,18 +41,31 @@ namespace MeuCorre.Domain.Entities
             Ativo = ativo;
             AtualizarDataMoficacao();
         }
-
         public void Ativar()
         {
             Ativo = true;
             AtualizarDataMoficacao();
         }
-
         public void Inativar()
         {
             Ativo = false;
             AtualizarDataMoficacao();
         }
-    }
 
+        private void ValidarEntidadeCategoria(string cor)
+        {
+            if (string.IsNullOrEmpty(cor))
+            {
+                return; //retorna caso a cor seja nula ou vazia
+            }
+
+            //#FF02AB
+            var corRegex = new Regex(@"^#?([0-9a-fA-F]{3}){1,2}$");
+
+            if (!corRegex.IsMatch(cor))
+            {
+                throw new Exception("A cor deve estar no formato hexadecimal");
+            }
+        }
+    }
 }

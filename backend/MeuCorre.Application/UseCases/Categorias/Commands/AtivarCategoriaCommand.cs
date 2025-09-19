@@ -9,7 +9,6 @@ namespace MeuCorre.Application.UseCases.Categorias.Commands
         [Required(ErrorMessage = "É necessário informar o ID da categoria")]
         public required Guid CategoriaId { get; set; }
     }
-
     internal class AtivarCategoriaCommandHandler : IRequestHandler<AtivarCategoriaCommand, (string, bool)>
     {
         private readonly ICategoriaRepository _categoriaRepository;

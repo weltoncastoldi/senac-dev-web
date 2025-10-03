@@ -1,5 +1,6 @@
 ﻿using System;
 using MeuCorre.Domain.Entities;
+using MeuCorre.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeuCorre.Infra.Data.Context
@@ -52,7 +53,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Despesas relacionadas à casa e moradia (aluguel, condomínio, contas)",
                     Cor = "#BEE3F8",
                     Icone = "🏠",
-                    TipoDaTransacao = 2,
+                    TipoDaTransacao = TipoTransacao.Despesa,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -64,7 +65,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Gastos com alimentação (supermercado, restaurantes)",
                     Cor = "#DFF7E0",
                     Icone = "🍔",
-                    TipoDaTransacao = 2,
+                    TipoDaTransacao = TipoTransacao.Despesa,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -76,7 +77,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Despesas médicas e de saúde (consultas, medicamentos)",
                     Cor = "#FFD1D1",
                     Icone = "💊",
-                    TipoDaTransacao = 2,
+                    TipoDaTransacao = TipoTransacao.Despesa,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -88,7 +89,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Gastos com transporte (combustível, ônibus, manutenção)",
                     Cor = "#FFF5BA",
                     Icone = "🚗",
-                    TipoDaTransacao = 2,
+                    TipoDaTransacao = TipoTransacao.Despesa,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -100,7 +101,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Despesas com lazer e entretenimento (cinema, viagens)",
                     Cor = "#E8D8FF",
                     Icone = "🎮",
-                    TipoDaTransacao = 2,
+                    TipoDaTransacao = TipoTransacao.Despesa,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -112,7 +113,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Rendimento principal do trabalho (salário)",
                     Cor = "#D1F7FF",
                     Icone = "💼",
-                    TipoDaTransacao = 1,
+                    TipoDaTransacao = TipoTransacao.Receita,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -124,7 +125,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Outras receitas diversas não classificadas",
                     Cor = "#F0F0F0",
                     Icone = "📦",
-                    TipoDaTransacao = 1,
+                    TipoDaTransacao = TipoTransacao.Receita,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 },
@@ -136,7 +137,7 @@ namespace MeuCorre.Infra.Data.Context
                     Descricao = "Aplicações financeiras e rendimentos (ações, fundos)",
                     Cor = "#E6F8E6",
                     Icone = "📈",
-                    TipoDaTransacao = 1,
+                    TipoDaTransacao = TipoTransacao.Receita,
                     Ativo = true,
                     DataCriacao = new DateTime(2025, 1, 1)
                 }
